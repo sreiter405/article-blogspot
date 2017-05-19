@@ -1,6 +1,7 @@
 
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
+import {ProgressBar} from 'react-bootstrap'
 import Persons from '../Components/persons'
 class PersonContainer extends Component
 {
@@ -12,7 +13,7 @@ class PersonContainer extends Component
                 </div>
             )
         } else {
-                return <h2>Loading</h2>
+                return <ProgressBar active label="Loading" now = {50}/>
             }
         
     }

@@ -18,7 +18,10 @@ const config = {
         test: /\.jsx?/,
         include: APP_DIR,
         loader: 'babel',
-      },
+      },{
+        test: /\.css$/,
+        loader: 'style!css!'
+      }
     ],
   },
   plugins: [

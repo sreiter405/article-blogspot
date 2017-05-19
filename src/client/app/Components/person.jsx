@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-
+import {ListGroup, ListGroupItem, Well} from 'react-bootstrap'
 class Person extends Component{
 
 
@@ -7,15 +7,13 @@ class Person extends Component{
         var person = this.props.person
         //Checks if the property exists before rendering
         return(
-      
-                <div className="well">
-                    <ul>
-                        <li>{person.userId}</li>
-                        <li>{person.username}</li>
-                        <li>{person.fullName}</li>
-                        <li>{person.interests.join()}</li>
-                    </ul>
-                </div>
+                    
+                    <ListGroup>
+                        <ListGroupItem>{person.userId}</ListGroupItem>
+                        <ListGroupItem>{person.username}</ListGroupItem>
+                        <ListGroupItem>{person.fullName}</ListGroupItem>
+                        <ListGroupItem>{person.interests.join()}</ListGroupItem>
+                    </ListGroup>
         )
     }
 }
