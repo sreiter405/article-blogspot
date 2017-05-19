@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DEV_PORT = require('./.env').DEV_PORT;
 
 const BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 const APP_DIR = path.resolve(__dirname, 'src/client/app');
@@ -33,11 +34,19 @@ const config = {
   ],
   devServer: {
     host: '0.0.0.0',
-    port: 8080,
+    port: DEV_PORT,
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
+    alias: {
+      react: path.resolve(__dirname, './node_modules/react'),
+      React: path.resolve(__dirname, './node_modules/react')
+    },
+    fallback: path.resolve(__dirname, './node_modules')
   },
+  resolveLoader: {
+    fallback: path.resolve(__dirname, './node_modules')
+  }
 };
 
 module.exports = config
