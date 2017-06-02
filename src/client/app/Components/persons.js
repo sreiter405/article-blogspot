@@ -1,12 +1,11 @@
 import React, {Component, PropTypes} from 'react'
-import Person from './person.jsx'
+import Person from './person'
 class Persons extends Component {
     constructor(props){
         super(props)
         this.getPersons = this.getPersons.bind(this)
     }
     getPersons (){
-        console.log(this.props.persons)
         return this.props.persons.map((person)=><Person person={person} key={person.userId}/>)
     }
     render() {

@@ -1,21 +1,21 @@
 
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
-import {ProgressBar} from 'react-bootstrap'
+import {ProgressBar, Well} from 'react-bootstrap'
 import Persons from '../Components/persons'
 class PersonContainer extends Component
 {
     render(){
         if (!this.props.isFetching) {
             return (
-                <div className="well">
+                <Well>
                     <Persons persons={this.props.persons}/>
-                </div>
+                </Well>
             )
         } else {
                 return <ProgressBar active label="Loading" now = {50}/>
             }
-        
+
     }
 }
 
@@ -25,7 +25,7 @@ class PersonContainer extends Component
 const mapStateToProps = (state) => {
     return {
        persons: state.persons,
-        isFetching: state.isFetching
+       isFetching: state.isFetching
     }
 }
 

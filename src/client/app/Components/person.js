@@ -7,7 +7,7 @@ class Person extends Component{
         var person = this.props.person
         //Checks if the property exists before rendering
         return(
-                    
+
                     <ListGroup>
                         <ListGroupItem>{person.userId}</ListGroupItem>
                         <ListGroupItem>{person.username}</ListGroupItem>
