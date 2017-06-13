@@ -4,4 +4,3 @@ src/client/public/*
 !src/client/public/index.html
 .idea
 .env
-.git
