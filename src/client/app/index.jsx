@@ -3,26 +3,25 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
+import App from 'grommet/components/App';
 import { Provider } from 'react-redux'
-import person from './Reducers/person_reducer'
-import { getPersonsAsynch  } from './ActionTypes/person_actions'
-import PersonContainer from './Containers/person_container'
+import appreducer from './Reducers/app_reducer'
+import HomeContainer from './Containers/home_container'
+import {persistStore, autoRehydrate} from 'redux-persist'
 
-class App extends Component {
+class HomeApp extends Component {
   render() {
     return (
-        <div>
-          <PersonContainer />
-        </div>
+          <HomeContainer />
     )
   }
 }
-let store = createStore(person, applyMiddleware(thunk, logger))
-store.dispatch(getPersonsAsynch())
+let store = createStore(appreducer, applyMiddleware(thunk, logger), autoRehydrate())
+
+persistStore(store)
 
 render(
     <Provider store={store}>
-      <App />
+      <HomeApp />
     </Provider>,
     document.getElementById('app'));
-

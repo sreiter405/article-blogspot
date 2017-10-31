@@ -17,10 +17,30 @@ const config = {
       {
         test: /\.jsx?/,
         include: APP_DIR,
-        loader: 'babel',
+        loader: 'babel-loader',
       },{
-        test: /\.css$/,
-        loader: 'style!css!'
+        test: /\.css?/,
+        loader: 'style-loader!css-loader!'
+      }, {
+        test: /\.json?/,
+        loader: "json-loader"
+      },{
+        test: /\.scss?/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader',
+            options:
+            {
+              includePaths: ['node_modules', 'node_modules/grommet/node_modules']
+            }
+          }
+        ]
       }
     ],
   },
@@ -40,15 +60,11 @@ const config = {
     port: DEV_PORT,
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.css', '.json'],
     alias: {
       react: path.resolve(__dirname, './node_modules/react'),
       React: path.resolve(__dirname, './node_modules/react')
-    },
-    fallback: path.resolve(__dirname, './node_modules')
-  },
-  resolveLoader: {
-    fallback: path.resolve(__dirname, './node_modules')
+    }
   }
 };
 
