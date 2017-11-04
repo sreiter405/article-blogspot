@@ -1,0 +1,6 @@
+node_modules
+src/client/app/public
+.idea/
+.git/
+.gitignore
+LICENSE

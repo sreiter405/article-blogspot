@@ -3,11 +3,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DEV_PORT = require('./.env').DEV_PORT;
 
-const BUILD_DIR = path.resolve(__dirname, 'src/client/dist');
+const BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 const APP_DIR = path.resolve(__dirname, 'src/client/app');
 
 const config = {
-  entry: `${APP_DIR}/index.js`,
+  entry: `${APP_DIR}/index.jsx`,
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
@@ -18,10 +18,29 @@ const config = {
         test: /\.jsx?/,
         include: APP_DIR,
         loader: 'babel-loader',
-      },
-      {
-        test: /\.css$/,
-        loader: 'style!css!'
+      },{
+        test: /\.css?/,
+        loader: 'style-loader!css-loader!'
+      }, {
+        test: /\.json?/,
+        loader: "json-loader"
+      },{
+        test: /\.scss?/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader',
+            options:
+            {
+              includePaths: ['node_modules', 'node_modules/grommet/node_modules']
+            }
+          }
+        ]
       }
     ],
   },
@@ -29,7 +48,6 @@ const config = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: `${APP_DIR}/index.html`,
-      inject : false,
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -42,8 +60,12 @@ const config = {
     port: DEV_PORT,
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-  },
+    extensions: ['.js', '.jsx', '.css', '.json'],
+    alias: {
+      react: path.resolve(__dirname, './node_modules/react'),
+      React: path.resolve(__dirname, './node_modules/react')
+    }
+  }
 };
 
 module.exports = config
