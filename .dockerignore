@@ -3,4 +3,5 @@ src/client/app/public
 .idea/
 .git/
 .gitignore
+README.md
 LICENSE
