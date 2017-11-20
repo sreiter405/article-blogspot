@@ -12,3 +12,7 @@ Then, run on port 3000
 docker run -p 3000:3000 article-blogspot
 ```
 
+# Viewing
+
+article-blogspot is deployed through Heroku (to test out Heroku's features and settings)
+Website is available at https://article-blogspot.herokuapp.com
